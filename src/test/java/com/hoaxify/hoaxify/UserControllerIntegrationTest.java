@@ -1,6 +1,7 @@
 package com.hoaxify.hoaxify;
 
 import com.hoaxify.hoaxify.user.UserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class UserControllerIntegrationTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @BeforeEach
+    public void cleanUp() {
+        userRepository.deleteAll();
+    }
 
     @Test
     public void postUser_whenUserIsValid_userSavedToDatabase() {
