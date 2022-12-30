@@ -34,7 +34,8 @@ class UserControllerUnitTest {
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/1.0/users")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(newUserInJson))
-				.andExpect(MockMvcResultMatchers.status().isCreated());
+				.andExpect(MockMvcResultMatchers.status().isCreated())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value("user saved"));
 		assertThat(userRepository.findByUsername("ben").get(0).getDisplayName()).isEqualTo("Ben");
 	}
 
