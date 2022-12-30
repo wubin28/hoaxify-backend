@@ -46,7 +46,9 @@ public class UserControllerIntegrationTest {
                 .header(HttpHeaders.CONTENT_TYPE, APPLICATION_JSON_VALUE)
                 .exchange()
                 .expectStatus()
-                .isCreated();
+                .isCreated()
+                .expectBody()
+                .jsonPath("$.message").isEqualTo("user saved");
         assertThat(userRepository.findByUsername("ben").get(0).getDisplayName()).isEqualTo("Ben");
     }
 
