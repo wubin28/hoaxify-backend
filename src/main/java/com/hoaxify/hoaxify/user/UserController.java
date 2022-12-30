@@ -18,8 +18,6 @@ public class UserController {
     @ResponseStatus(code = HttpStatus.CREATED)
     GenericResponse createUser(@RequestBody User user) {
         userService.save(user);
-        GenericResponse genericResponse = new GenericResponse();
-        genericResponse.setMessage("user saved");
-        return genericResponse;
+        return new GenericResponse("user saved");
     }
 }
